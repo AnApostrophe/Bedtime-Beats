@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Gameboy
+    uniqueID: 2059508841
+    locked: 0
