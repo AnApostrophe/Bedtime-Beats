@@ -1232,12 +1232,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87dc5e7947bef6e4e8091bd199c2c083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  period: 3
-  periodOffset: 1
-  waitDuration: 1
+  period: 8
+  periodOffset: 2
+  waitDuration: 1.75
   waitOffset: 0.5
-  walkingDuration: 5
+  walkingDuration: 6
   walkingProgress: 0
+  checkDuration: 1.5
+  door: {fileID: 1761119544}
+  backLight: {fileID: 1263778670}
+  underLight: {fileID: 1596930905}
 --- !u!1 &1596930905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1790,7 +1794,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &2076790913
 MonoBehaviour:
   m_ObjectHideFlags: 0

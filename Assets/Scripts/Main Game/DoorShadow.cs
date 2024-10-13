@@ -6,6 +6,9 @@ public class DoorShadow : MonoBehaviour
     public float period = 3f, periodOffset = 1f;
     public float waitDuration = 1f, waitOffset = 0.5f;
     public float walkingDuration = 5f, walkingProgress = 0f;
+    public float checkDuration = 1f;
+
+    public GameObject door, backLight, underLight;
 
     private bool walkingPaused;
     private Vector2 oldPos, targetPos;
@@ -34,16 +37,16 @@ public class DoorShadow : MonoBehaviour
 
         while (true)
         {
-            int behaviorIndex = Random.Range(0, 2);
+            int behaviorIndex = Random.Range(0, 3);
             oldPos = transform.localPosition;
             targetPos = oldPos * Vector2.left;
             walkingProgress = 0;
 
             switch (behaviorIndex)
             {
-                case 0: // Walk past, don't check
+                case 0: // Don't stop, don't check
                     break;
-                case 1: // Walk past, stop, don't check
+                case 1: // Stop, don't check
                     while (walkingProgress < walkingDuration / 2)
                     {
                         yield return null;
@@ -52,8 +55,15 @@ public class DoorShadow : MonoBehaviour
                     yield return new WaitForSeconds(waitDuration + Random.Range(-waitOffset, waitOffset));
                     walkingPaused = false;
                     break;
-                case 2: // Walk past, stop, check
-                    // TODO
+                case 2: // Stop, check
+                    while (walkingProgress < walkingDuration / 2)
+                    {
+                        yield return null;
+                    }
+                    walkingPaused = true;
+                    yield return new WaitForSeconds(waitDuration + Random.Range(-waitOffset, waitOffset));
+                    yield return OpenDoorAndCheck();
+                    walkingPaused = false;
                     break;
                 default: // Nothing
                     break;
@@ -62,5 +72,20 @@ public class DoorShadow : MonoBehaviour
             yield return new WaitUntil(() => transform.localPosition.Equals(targetPos));
             yield return new WaitForSeconds(period + Random.Range(-periodOffset, periodOffset));
         }
+    }
+
+    IEnumerator OpenDoorAndCheck()
+    {
+        door.GetComponent<SpriteRenderer>().enabled = false;
+        if (!Player.Instance.sleeping)
+        {
+            backLight.GetComponent<SpriteRenderer>().color = Color.red;
+            underLight.GetComponent<SpriteRenderer>().color = Color.red;
+            yield return new WaitForSeconds(checkDuration);
+            Player.Instance.LoseGame();
+        }
+        yield return new WaitForSeconds(checkDuration);
+        door.GetComponent<SpriteRenderer>().enabled = true;
+        yield return new WaitForSeconds(checkDuration);
     }
 }

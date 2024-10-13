@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -8,7 +10,7 @@ public class Player : MonoBehaviour
 
     public float moveSpeed = 10f;
     public bool moveDisabled = false;
-    public KeyCode interactKey = KeyCode.E;
+    public KeyCode interactKey = KeyCode.Space;
     public bool sleeping = true;
 
     private Vector2 sleepPos;
@@ -36,5 +38,10 @@ public class Player : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
         }
+    }
+
+    public void LoseGame()
+    {
+        SceneManager.LoadScene(1);
     }
 }
