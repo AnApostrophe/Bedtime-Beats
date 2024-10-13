@@ -1,35 +1,66 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorShadow : MonoBehaviour
 {
-    public float meanParentTime = 0.7f;
-    public float randomTime = 0.2f;
-    public float meanSpeed = 0.5f;
+    public float period = 3f, periodOffset = 1f;
+    public float waitDuration = 1f, waitOffset = 0.5f;
+    public float walkingDuration = 5f, walkingProgress = 0f;
 
+    private bool walkingPaused;
     private Vector2 oldPos, targetPos;
-    private Rigidbody2D rb;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        oldPos = transform.position;
+        walkingProgress = walkingDuration;
 
-        StartCoroutine(ParentAppear());
+        StartCoroutine(ShadowBehavior());
     }
 
     void Update()
     {
+        if (!walkingPaused)
+        {
+            walkingProgress += Time.deltaTime;
+        }
+
         transform.rotation = Quaternion.Euler(Vector3.forward * Mathf.Rad2Deg * Mathf.Atan2(transform.localPosition.x, 1f));
+        transform.localPosition = Vector2.Lerp(oldPos, targetPos, walkingProgress / walkingDuration);
     }
 
-    IEnumerator ParentAppear()
+    IEnumerator ShadowBehavior()
     {
+        // yield return new WaitForSeconds(period * 3);
+
         while (true)
         {
-            yield return new WaitForSeconds(meanParentTime + Random.Range(-randomTime, randomTime));
-            // Play sound
+            int behaviorIndex = Random.Range(0, 2);
+            oldPos = transform.localPosition;
+            targetPos = oldPos * Vector2.left;
+            walkingProgress = 0;
+
+            switch (behaviorIndex)
+            {
+                case 0: // Walk past, don't check
+                    break;
+                case 1: // Walk past, stop, don't check
+                    while (walkingProgress < walkingDuration / 2)
+                    {
+                        yield return null;
+                    }
+                    walkingPaused = true;
+                    yield return new WaitForSeconds(waitDuration + Random.Range(-waitOffset, waitOffset));
+                    walkingPaused = false;
+                    break;
+                case 2: // Walk past, stop, check
+                    // TODO
+                    break;
+                default: // Nothing
+                    break;
+            }
+
+            yield return new WaitUntil(() => transform.localPosition.Equals(targetPos));
+            yield return new WaitForSeconds(period + Random.Range(-periodOffset, periodOffset));
         }
     }
 }

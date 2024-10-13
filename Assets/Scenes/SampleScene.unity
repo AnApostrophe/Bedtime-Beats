@@ -825,7 +825,7 @@ Transform:
   m_GameObject: {fileID: 1078363324}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.36, y: -0.099999964, z: 0}
+  m_LocalPosition: {x: 5.67, y: -0.099999964, z: 0}
   m_LocalScale: {x: 1.9384, y: 3.3851, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1111,8 +1111,6 @@ GameObject:
   - component: {fileID: 1361567463}
   - component: {fileID: 1361567464}
   - component: {fileID: 1361567465}
-  - component: {fileID: 1361567466}
-  - component: {fileID: 1361567467}
   m_Layer: 0
   m_Name: Door Shadow
   m_TagString: Untagged
@@ -1199,71 +1197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87dc5e7947bef6e4e8091bd199c2c083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meanParentTime: 0.7
-  randomTime: 0.2
-  meanSpeed: 10
---- !u!50 &1361567466
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361567462}
-  m_BodyType: 0
-  m_Simulated: 0
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!70 &1361567467
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361567462}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.00000035762787}
-  m_Size: {x: 0.9999999, y: 2}
-  m_Direction: 0
 --- !u!1 &1596930905
 GameObject:
   m_ObjectHideFlags: 0
