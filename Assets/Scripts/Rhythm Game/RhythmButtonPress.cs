@@ -14,6 +14,8 @@ public class RhythmButtonPress : MonoBehaviour
     public bool createMode;
     public GameObject n;
 
+    public GameManager manager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,10 @@ public class RhythmButtonPress : MonoBehaviour
                 if (active)
                 {
                     Destroy(note);
+                }
+                else
+                {
+                    manager.health--;
                 }
             }
 
