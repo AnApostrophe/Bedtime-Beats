@@ -15,7 +15,9 @@ public class DoorShadow : MonoBehaviour
 
     void Start()
     {
-        walkingProgress = walkingDuration;
+        oldPos = transform.localPosition;
+        walkingProgress = 0;
+        walkingPaused = true;
 
         StartCoroutine(ShadowBehavior());
     }
@@ -34,6 +36,7 @@ public class DoorShadow : MonoBehaviour
     IEnumerator ShadowBehavior()
     {
         // yield return new WaitForSeconds(period * 3);
+        walkingPaused = false;
 
         while (true)
         {

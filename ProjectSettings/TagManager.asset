@@ -51,3 +51,6 @@ TagManager:
   - name: Notes
     uniqueID: 5143343
     locked: 0
+  - name: Start Screen
+    uniqueID: 1509701741
+    locked: 0
