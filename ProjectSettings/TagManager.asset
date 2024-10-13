@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Note
   layers:
   - Default
   - TransparentFX
@@ -43,4 +44,7 @@ TagManager:
     locked: 0
   - name: Gameboy
     uniqueID: 2059508841
+    locked: 0
+  - name: Notes
+    uniqueID: 5143343
     locked: 0
