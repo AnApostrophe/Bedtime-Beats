@@ -39,7 +39,7 @@ public class DoorShadow : MonoBehaviour
         {
             int behaviorIndex = Random.Range(0, 3);
             oldPos = transform.localPosition;
-            targetPos = oldPos * Vector2.left;
+            targetPos = oldPos * new Vector2(-1, 1);
             walkingProgress = 0;
 
             switch (behaviorIndex)

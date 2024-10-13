@@ -5,6 +5,7 @@ using UnityEngine;
 public class GamePopup : MonoBehaviour
 {
     public static GamePopup Instance;
+    public GameObject screen;
 
     public float popupTime = 0.3f;
     public bool popupVisible = false;
@@ -18,6 +19,7 @@ public class GamePopup : MonoBehaviour
 
     private void Start()
     {
+        screen.SetActive(false);
         startPos = transform.position;
     }
 
@@ -31,5 +33,6 @@ public class GamePopup : MonoBehaviour
     {
         popupVisible ^= true;
         Player.Instance.moveDisabled ^= true;
+        screen.SetActive(!screen.activeInHierarchy);
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RhythmButtonPress : MonoBehaviour
 {
+    public GameObject notes;
     public KeyCode key;
     bool active = false;
     GameObject note;
@@ -22,50 +23,50 @@ public class RhythmButtonPress : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if( createMode && Input.GetKeyDown(key))
+        if (createMode && Input.GetKeyDown(key))
         {
-            if( Input.GetKeyDown(key))
-        {
-            theSR.sprite = pressedImage;
-            Instantiate(n, transform.position, Quaternion.identity);
-        }
+            if (Input.GetKeyDown(key))
+            {
+                theSR.sprite = pressedImage;
+                Instantiate(n, transform.position, Quaternion.identity, notes.transform);
+            }
         }
 
 
         else
         {
-        if( Input.GetKeyDown(key))
-        {
-            theSR.sprite = pressedImage;
-            if( active )
+            if (Input.GetKeyDown(key))
             {
-                Destroy(note);
+                theSR.sprite = pressedImage;
+                if (active)
+                {
+                    Destroy(note);
+                }
             }
+
+            if (Input.GetKeyUp(key))
+            {
+                theSR.sprite = defaultImage;
+            }
+
         }
 
-        if( Input.GetKeyUp(key) )
-        {
-            theSR.sprite = defaultImage;
-        }
 
-        }
-
-        
     }
 
-    void OnTriggerEnter2D( Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         active = true;
-        if( col.gameObject.tag == "Note" )
+        if (col.gameObject.tag == "Note")
         {
             note = col.gameObject;
         }
     }
 
-    void OnTriggerExit2D( Collider2D col )
+    void OnTriggerExit2D(Collider2D col)
     {
         active = false;
-    } 
+    }
 
     bool getCreateMode()
     {

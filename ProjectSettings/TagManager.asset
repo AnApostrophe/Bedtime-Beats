@@ -45,6 +45,9 @@ TagManager:
   - name: Gameboy
     uniqueID: 2059508841
     locked: 0
+  - name: Rhythm Game
+    uniqueID: 2086712701
+    locked: 0
   - name: Notes
     uniqueID: 5143343
     locked: 0
