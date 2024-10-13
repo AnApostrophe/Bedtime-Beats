@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 19735611}
   - component: {fileID: 19735613}
   m_Layer: 0
-  m_Name: Room
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,12 +204,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19735607}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1.05, z: 0}
   m_LocalScale: {x: 14.8, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1137045236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &19735610
 BoxCollider2D:
@@ -469,13 +469,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310058895}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -4.59, y: -3.19, z: 0}
-  m_LocalScale: {x: 1.5474, y: 2.4988, z: 1}
+  m_LocalScale: {x: 1.5474001, y: 2.4988, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1725299432}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1137045236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!61 &310058898
 BoxCollider2D:
@@ -710,7 +710,7 @@ GameObject:
   - component: {fileID: 776871262}
   - component: {fileID: 776871263}
   m_Layer: 0
-  m_Name: Game Popup
+  m_Name: Rhythm Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -824,13 +824,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078363324}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.67, y: -0.099999964, z: 0}
   m_LocalScale: {x: 1.9384, y: 3.3851, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1216244986}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1137045236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1078363327
 MonoBehaviour:
@@ -844,6 +844,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7805cd5c724c40f46a5ff6766ef3f27f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1137045235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1137045236}
+  m_Layer: 0
+  m_Name: Room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1137045236
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137045235}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 19735609}
+  - {fileID: 1301011071}
+  - {fileID: 1078363326}
+  - {fileID: 310058897}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1216244985
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +890,7 @@ GameObject:
   - component: {fileID: 1216244986}
   - component: {fileID: 1216244987}
   m_Layer: 0
-  m_Name: Sheets
+  m_Name: Bedsheets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -939,7 +974,7 @@ GameObject:
   - component: {fileID: 1263778671}
   - component: {fileID: 1263778672}
   m_Layer: 0
-  m_Name: Back Light
+  m_Name: Open Door Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1024,7 +1059,7 @@ GameObject:
   - component: {fileID: 1301011071}
   - component: {fileID: 1301011070}
   m_Layer: 0
-  m_Name: Wall
+  m_Name: Back Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1090,7 +1125,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301011069}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 3.1391, z: 0}
   m_LocalScale: {x: 15.1, y: 2.3419793, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1098,7 +1133,7 @@ Transform:
   - {fileID: 1761119545}
   - {fileID: 1263778671}
   - {fileID: 1596930906}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1137045236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1361567462
 GameObject:
@@ -1112,7 +1147,7 @@ GameObject:
   - component: {fileID: 1361567464}
   - component: {fileID: 1361567465}
   m_Layer: 0
-  m_Name: Door Shadow
+  m_Name: Parent Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1197,6 +1232,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87dc5e7947bef6e4e8091bd199c2c083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  period: 3
+  periodOffset: 1
+  waitDuration: 1
+  waitOffset: 0.5
+  walkingDuration: 5
+  walkingProgress: 0
 --- !u!1 &1596930905
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,7 +1249,7 @@ GameObject:
   - component: {fileID: 1596930906}
   - component: {fileID: 1596930907}
   m_Layer: 0
-  m_Name: Under Light
+  m_Name: Under Door Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1298,7 +1339,7 @@ GameObject:
   - component: {fileID: 1708071846}
   - component: {fileID: 1708071847}
   m_Layer: 0
-  m_Name: Shadow
+  m_Name: Parent Figure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1903,9 +1944,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 19735609}
-  - {fileID: 1301011071}
-  - {fileID: 1078363326}
-  - {fileID: 310058897}
+  - {fileID: 1137045236}
   - {fileID: 2076790911}
   - {fileID: 776871262}
