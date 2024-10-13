@@ -464,6 +464,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1669967243}
     - target: {fileID: 5135101421232602119, guid: 19e181e2cacdb874bb3d311884385f60, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 1570708175}
+    - target: {fileID: 5135101421232602119, guid: 19e181e2cacdb874bb3d311884385f60, type: 3}
       propertyPath: createMode
       value: 0
       objectReference: {fileID: 0}
@@ -1205,6 +1209,10 @@ PrefabInstance:
       propertyPath: notes
       value: 
       objectReference: {fileID: 1669967243}
+    - target: {fileID: 1887498873979424221, guid: 629ade9e7f34bba49b792808e23aae25, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 1570708175}
     - target: {fileID: 1887498873979424221, guid: 629ade9e7f34bba49b792808e23aae25, type: 3}
       propertyPath: createMode
       value: 0
@@ -2460,6 +2468,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1570708175 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8480969946222893201, guid: 554883a30655c2949a0aab2a1d40f781, type: 3}
+  m_PrefabInstance: {fileID: 941934622}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7345a20f7f9894049bf3d67707443676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1577141002
 GameObject:
   m_ObjectHideFlags: 0
@@ -2857,6 +2876,10 @@ PrefabInstance:
       propertyPath: notes
       value: 
       objectReference: {fileID: 1669967243}
+    - target: {fileID: 955127265207414417, guid: 69430ab799da2de42906a53e696a25f5, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 1570708175}
     - target: {fileID: 955127265207414417, guid: 69430ab799da2de42906a53e696a25f5, type: 3}
       propertyPath: createMode
       value: 0
@@ -3558,6 +3581,10 @@ PrefabInstance:
       propertyPath: notes
       value: 
       objectReference: {fileID: 1669967243}
+    - target: {fileID: 1780196917240780964, guid: 27b16f7a5faf0a44b90c5203023ae36f, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 1570708175}
     - target: {fileID: 1780196917240780964, guid: 27b16f7a5faf0a44b90c5203023ae36f, type: 3}
       propertyPath: createMode
       value: 0
