@@ -13,9 +13,10 @@ public class Player : MonoBehaviour
     public KeyCode interactKey = KeyCode.Space;
     public bool sleeping = true;
 
-    private Vector2 sleepPos;
+    private string animState;
 
     private Rigidbody2D rb;
+    private Animator anim;
 
     void Awake()
     {
@@ -25,7 +26,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sleepPos = transform.position;
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -38,10 +39,22 @@ public class Player : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
         }
+
+        PlayAnimations();
     }
 
     public void LoseGame()
     {
         SceneManager.LoadScene(0);
+    }
+
+    void PlayAnimations()
+    {
+        if (rb.velocity.x < 0) animState = "WalkLeft";
+        else if (rb.velocity.x > 0) animState = "WalkRight";
+        else if (rb.velocity.y > 0) animState = "WalkUp";
+        else if (rb.velocity.y < 0) animState = "WalkDown";
+        else animState = "Idle";
+        anim.Play(animState);
     }
 }
