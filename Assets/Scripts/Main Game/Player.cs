@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator anim;
+    private AudioSource source;
 
     void Awake()
     {
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        source = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
         }
 
         PlayAnimations();
+        PlaySounds();
     }
 
     public void LoseGame()
@@ -56,5 +59,17 @@ public class Player : MonoBehaviour
         else if (rb.velocity.y < 0) animState = "WalkDown";
         else animState = "Idle";
         anim.Play(animState);
+    }
+
+    void PlaySounds()
+    {
+        if (!rb.velocity.Equals(Vector2.zero))
+        {
+            source.UnPause();
+        }
+        else
+        {
+            source.Pause();
+        }
     }
 }
