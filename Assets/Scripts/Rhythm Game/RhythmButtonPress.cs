@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class RhythmButtonPress : MonoBehaviour
 {
+    public static bool createMode;
     public GameObject notes;
     public KeyCode key;
     bool active = false;
-    GameObject note;
+    GameObject lastNote;
     public Sprite pressedImage;
     public Sprite defaultImage;
     private SpriteRenderer theSR;
-    public bool createMode;
     public GameObject n;
 
     public GameManager manager;
@@ -20,44 +20,46 @@ public class RhythmButtonPress : MonoBehaviour
     void Start()
     {
         theSR = GetComponent<SpriteRenderer>();
+        createMode = manager.createMode;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (createMode && Input.GetKeyDown(key))
+        if (!Note.paused)
         {
-            if (Input.GetKeyDown(key))
+            if (createMode && Input.GetKeyDown(key))
             {
-                theSR.sprite = pressedImage;
-                Instantiate(n, transform.position, Quaternion.identity, notes.transform);
-            }
-        }
-
-
-        else
-        {
-            if (Input.GetKeyDown(key))
-            {
-                theSR.sprite = pressedImage;
-                if (active)
+                if (Input.GetKeyDown(key))
                 {
-                    Destroy(note);
-                }
-                else
-                {
-                    manager.DecreaseHealth();
+                    theSR.sprite = pressedImage;
+                    Instantiate(n, transform.position, Quaternion.identity, notes.transform);
                 }
             }
 
-            if (Input.GetKeyUp(key))
+
+            else
             {
-                theSR.sprite = defaultImage;
+                if (Input.GetKeyDown(key))
+                {
+                    theSR.sprite = pressedImage;
+                    if (active)
+                    {
+                        Destroy(lastNote);
+                    }
+                    else
+                    {
+                        manager.DecreaseHealth();
+                    }
+                }
+
+                if (Input.GetKeyUp(key))
+                {
+                    theSR.sprite = defaultImage;
+                }
+
             }
-
         }
-
-
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -65,16 +67,13 @@ public class RhythmButtonPress : MonoBehaviour
         active = true;
         if (col.gameObject.tag == "Note")
         {
-            note = col.gameObject;
+            lastNote = col.gameObject;
         }
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (!GetComponent<Rigidbody2D>().IsTouchingLayers(5))
-        {
-            active = false;
-        }
+        active = false;
     }
 
     bool getCreateMode()

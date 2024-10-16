@@ -12,6 +12,14 @@ public class Title : MonoBehaviour
         Time.timeScale = 0;
     }
 
+    void Update()
+    {
+        if (Input.anyKeyDown)
+        {
+            StartGame();
+        }
+    }
+
     public void StartGame()
     {
         gameObject.SetActive(false);

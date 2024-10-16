@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Note : MonoBehaviour
 {
+    public static bool paused;
+
     Rigidbody2D rb;
     public float beatTempoPM;
     float beatTempoPS;
@@ -32,6 +34,7 @@ public class Note : MonoBehaviour
             }
         }
         else*/
+        if (!paused)
         {
             transform.position -= new Vector3(0f, beatTempoPS * Time.deltaTime, 0f);
         }

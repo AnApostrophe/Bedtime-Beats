@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public bool createMode;
     public int health;
     public int numOfHearts;
 
@@ -53,8 +54,11 @@ public class GameManager : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Destroy(col.gameObject);
-        DecreaseHealth();
+        if (!createMode)
+        {
+            Destroy(col.gameObject);
+            DecreaseHealth();
+        }
     }
 
     public void DecreaseHealth()
@@ -62,7 +66,7 @@ public class GameManager : MonoBehaviour
         health--;
         if (health < 1)
         {
-            ResetMinigame();
+            LoseMinigame();
         }
     }
 
@@ -72,5 +76,11 @@ public class GameManager : MonoBehaviour
         if (oldNotes != null) Destroy(oldNotes);
         oldNotes = Instantiate(notesPrefab, transform.parent);
         oldNotes.SetActive(true);
+    }
+
+    public void LoseMinigame()
+    {
+        ResetMinigame();
+        GamePopup.Instance.UnPauseMethod();
     }
 }
