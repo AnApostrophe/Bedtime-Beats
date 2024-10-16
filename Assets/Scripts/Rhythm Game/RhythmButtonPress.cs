@@ -46,7 +46,7 @@ public class RhythmButtonPress : MonoBehaviour
                 }
                 else
                 {
-                    manager.health--;
+                    manager.DecreaseHealth();
                 }
             }
 
@@ -71,7 +71,10 @@ public class RhythmButtonPress : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
-        active = false;
+        if (!GetComponent<Rigidbody2D>().IsTouchingLayers(5))
+        {
+            active = false;
+        }
     }
 
     bool getCreateMode()

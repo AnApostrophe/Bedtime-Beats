@@ -11,23 +11,27 @@ public class GameManager : MonoBehaviour
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
+
+    public GameObject notesPrefab;
+    private GameObject oldNotes;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        ResetMinigame();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if( health > numOfHearts )
+        if (health > numOfHearts)
         {
             health = numOfHearts;
         }
-        
-        for( int i = 0; i < hearts.Length; i++ )
+
+        for (int i = 0; i < hearts.Length; i++)
         {
-            if( i < health)
+            if (i < health)
             {
                 hearts[i].sprite = fullHeart;
             }
@@ -35,8 +39,8 @@ public class GameManager : MonoBehaviour
             {
                 hearts[i].sprite = emptyHeart;
             }
-            
-            if( i < numOfHearts )
+
+            if (i < numOfHearts)
             {
                 hearts[i].enabled = true;
             }
@@ -49,8 +53,24 @@ public class GameManager : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Destroy(col);
-        health--;
+        Destroy(col.gameObject);
+        DecreaseHealth();
+    }
 
+    public void DecreaseHealth()
+    {
+        health--;
+        if (health < 1)
+        {
+            ResetMinigame();
+        }
+    }
+
+    public void ResetMinigame()
+    {
+        health = numOfHearts;
+        if (oldNotes != null) Destroy(oldNotes);
+        oldNotes = Instantiate(notesPrefab, transform.parent);
+        oldNotes.SetActive(true);
     }
 }

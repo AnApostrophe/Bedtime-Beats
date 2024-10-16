@@ -9,7 +9,7 @@ public class GamePopup : MonoBehaviour
 
     public float popupTime = 0.3f;
     public bool popupVisible = false;
-    private float popupProgress;
+    public float popupProgress;
     private Vector2 startPos;
 
     private void Awake()
@@ -27,12 +27,12 @@ public class GamePopup : MonoBehaviour
     {
         transform.position = Vector2.Lerp(startPos, Vector2.zero, popupProgress / popupTime);
         popupProgress = Mathf.Clamp(popupProgress, 0, popupTime) + (popupVisible ? Time.deltaTime : -Time.deltaTime);
+        screen.SetActive(popupProgress >= popupTime / 2);
     }
 
     public void ToggleGamePopup()
     {
         popupVisible ^= true;
         Player.Instance.moveDisabled ^= true;
-        screen.SetActive(!screen.activeInHierarchy);
     }
 }
