@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
     public bool createMode;
     public int health;
     public int numOfHearts;
@@ -16,13 +18,16 @@ public class GameManager : MonoBehaviour
     public GameObject notesPrefab;
     private GameObject oldNotes;
 
-    // Start is called before the first frame update
+    void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         ResetMinigame();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (health > numOfHearts)
@@ -61,13 +66,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void DecreaseHealth()
+    public void WinMinigame()
     {
-        health--;
-        if (health < 1)
-        {
-            LoseMinigame();
-        }
+        // TODO
+        Debug.Log("You Win");
+    }
+
+    public void LoseMinigame()
+    {
+        ResetMinigame();
+        GamePopup.Instance.Unpause();
     }
 
     public void ResetMinigame()
@@ -78,9 +86,12 @@ public class GameManager : MonoBehaviour
         oldNotes.SetActive(true);
     }
 
-    public void LoseMinigame()
+    public void DecreaseHealth()
     {
-        ResetMinigame();
-        GamePopup.Instance.UnPauseMethod();
+        health--;
+        if (health < 1)
+        {
+            LoseMinigame();
+        }
     }
 }
