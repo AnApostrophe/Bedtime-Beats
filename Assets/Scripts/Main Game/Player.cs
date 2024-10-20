@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public bool moveDisabled = false;
     public KeyCode interactKey = KeyCode.Space;
     public bool sleeping = true;
+    public GameObject GameOverScreen;
+    public GameObject ParentCanvas;
 
     private string animState;
 
@@ -29,6 +31,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         source = GetComponent<AudioSource>();
+        GameOverScreen.SetActive(false);
+        ParentCanvas.SetActive(true);
     }
 
     void Update()
@@ -48,7 +52,8 @@ public class Player : MonoBehaviour
 
     public void LoseGame()
     {
-        SceneManager.LoadScene(0);
+        StartCoroutine(GameOverPullUp());
+        
     }
 
     void PlayAnimations()
@@ -71,5 +76,21 @@ public class Player : MonoBehaviour
         {
             source.Pause();
         }
+    }
+
+    IEnumerator GameOverPullUp()
+    {
+        Debug.Log("coroutine started");
+        yield return new WaitForSeconds(0.15f);
+        Debug.Log("waited part 1");
+        ParentCanvas.SetActive(true);
+        GameOverScreen.SetActive(true);
+        Debug.Log("panel should be active" + GameOverScreen.activeSelf + "," + GameOverScreen.activeInHierarchy);
+        Debug.Log(GameOverScreen.transform.parent.gameObject.activeSelf +"," + GameOverScreen.transform.parent.gameObject);
+        yield return new WaitForSeconds(2.5f);
+        Debug.Log("waited part 2");
+        SceneManager.LoadScene(0);
+        Debug.Log("scene loaded");
+
     }
 }
