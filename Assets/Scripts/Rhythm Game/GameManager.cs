@@ -84,6 +84,8 @@ public class GameManager : MonoBehaviour
         if (oldNotes != null) Destroy(oldNotes);
         oldNotes = Instantiate(notesPrefab, transform.parent);
         oldNotes.SetActive(true);
+        GamePopup.Instance.music.time = 0;
+        GamePopup.Instance.music.Pause();
     }
 
     public void DecreaseHealth()
