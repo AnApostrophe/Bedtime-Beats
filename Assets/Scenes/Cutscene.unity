@@ -470,7 +470,7 @@ PrefabInstance:
     - target: {fileID: 5135101421232602119, guid: 19e181e2cacdb874bb3d311884385f60, type: 3}
       propertyPath: manager
       value: 
-      objectReference: {fileID: 1570708175}
+      objectReference: {fileID: 0}
     - target: {fileID: 5135101421232602119, guid: 19e181e2cacdb874bb3d311884385f60, type: 3}
       propertyPath: createMode
       value: 1
@@ -2599,7 +2599,7 @@ PrefabInstance:
     - target: {fileID: 1887498873979424221, guid: 629ade9e7f34bba49b792808e23aae25, type: 3}
       propertyPath: manager
       value: 
-      objectReference: {fileID: 1570708175}
+      objectReference: {fileID: 0}
     - target: {fileID: 1887498873979424221, guid: 629ade9e7f34bba49b792808e23aae25, type: 3}
       propertyPath: createMode
       value: 1
@@ -3207,7 +3207,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2443073752684185113, guid: 554883a30655c2949a0aab2a1d40f781, type: 3}
       propertyPath: m_Name
-      value: GameManager
+      value: CutsceneManager
       objectReference: {fileID: 0}
     - target: {fileID: 2443073752684185113, guid: 554883a30655c2949a0aab2a1d40f781, type: 3}
       propertyPath: m_Layer
@@ -3293,10 +3293,14 @@ PrefabInstance:
       propertyPath: hearts.Array.data[5]
       value: 
       objectReference: {fileID: 871629724}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8480969946222893201, guid: 554883a30655c2949a0aab2a1d40f781, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2443073752684185113, guid: 554883a30655c2949a0aab2a1d40f781, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1973329863}
   m_SourcePrefab: {fileID: 100100000, guid: 554883a30655c2949a0aab2a1d40f781, type: 3}
 --- !u!4 &941934623 stripped
 Transform:
@@ -5007,7 +5011,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1361567463}
   - component: {fileID: 1361567464}
-  - component: {fileID: 1361567465}
   - component: {fileID: 1361567466}
   m_Layer: 0
   m_Name: Parent Shadow
@@ -5083,30 +5086,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
---- !u!114 &1361567465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361567462}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87dc5e7947bef6e4e8091bd199c2c083, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  period: 8
-  periodOffset: 2
-  waitDuration: 1.75
-  waitOffset: 0.5
-  walkingDuration: 6
-  walkingProgress: 0
-  checkDuration: 2
-  door: {fileID: 1761119544}
-  backLight: {fileID: 1263778670}
-  underLight: {fileID: 1596930905}
-  walkingAudio: {fileID: 8300000, guid: 757990db12b53004b93f699ceeb05b39, type: 3}
-  scareAudio: {fileID: 8300000, guid: 1c8195f54f0cab34ea3aaa270d9b98c6, type: 3}
 --- !u!82 &1361567466
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6100,17 +6079,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
---- !u!114 &1570708175 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8480969946222893201, guid: 554883a30655c2949a0aab2a1d40f781, type: 3}
-  m_PrefabInstance: {fileID: 941934622}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7345a20f7f9894049bf3d67707443676, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1596930905
 GameObject:
   m_ObjectHideFlags: 0
@@ -6470,7 +6438,7 @@ PrefabInstance:
     - target: {fileID: 955127265207414417, guid: 69430ab799da2de42906a53e696a25f5, type: 3}
       propertyPath: manager
       value: 
-      objectReference: {fileID: 1570708175}
+      objectReference: {fileID: 0}
     - target: {fileID: 955127265207414417, guid: 69430ab799da2de42906a53e696a25f5, type: 3}
       propertyPath: createMode
       value: 1
@@ -7539,6 +7507,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 2.68}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1973329861 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2443073752684185113, guid: 554883a30655c2949a0aab2a1d40f781, type: 3}
+  m_PrefabInstance: {fileID: 941934622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1973329863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973329861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a5e80f1905af5428ffc0e634d9561d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTutorial: 0
+  notesPrefab: {fileID: 0}
 --- !u!1 &2036759398
 GameObject:
   m_ObjectHideFlags: 0
@@ -7724,7 +7711,7 @@ PrefabInstance:
     - target: {fileID: 1780196917240780964, guid: 27b16f7a5faf0a44b90c5203023ae36f, type: 3}
       propertyPath: manager
       value: 
-      objectReference: {fileID: 1570708175}
+      objectReference: {fileID: 0}
     - target: {fileID: 1780196917240780964, guid: 27b16f7a5faf0a44b90c5203023ae36f, type: 3}
       propertyPath: createMode
       value: 1
