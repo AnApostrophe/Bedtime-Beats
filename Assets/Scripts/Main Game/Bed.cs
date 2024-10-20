@@ -6,6 +6,6 @@ public class Bed : MonoBehaviour
 {
     void Update()
     {
-        Player.Instance.sleeping = Vector2.Distance(transform.position, Player.Instance.transform.position) < 1f ? true : false;
+        Player.Instance.sleeping = Vector2.Distance(transform.position, Player.Instance.transform.position) < 2f ? true : false;
     }
 }

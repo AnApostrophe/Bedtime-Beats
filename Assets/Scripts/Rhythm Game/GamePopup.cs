@@ -10,6 +10,7 @@ public class GamePopup : MonoBehaviour
 
     public GameObject screen;
     public TextMeshProUGUI pauseText;
+    public AudioSource music;
 
     public float popupTime = 0.3f;
     public bool popupVisible = false;
@@ -19,7 +20,6 @@ public class GamePopup : MonoBehaviour
     bool paused;
 
     Vector2 startPos;
-    AudioSource music;
 
     private void Awake()
     {
