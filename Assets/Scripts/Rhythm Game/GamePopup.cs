@@ -7,13 +7,18 @@ using UnityEngine;
 public class GamePopup : MonoBehaviour
 {
     public static GamePopup Instance;
+
     public GameObject screen;
     public TextMeshProUGUI pauseText;
 
     public float popupTime = 0.3f;
     public bool popupVisible = false;
     public float popupProgress;
-    private Vector2 startPos;
+
+    bool paused;
+
+    Vector2 startPos;
+    AudioSource music;
 
     private void Awake()
     {
@@ -22,43 +27,61 @@ public class GamePopup : MonoBehaviour
 
     private void Start()
     {
-        screen.SetActive(false);
+        music = GetComponent<AudioSource>();
+
         startPos = transform.position;
+        paused = true;
+
+        music.Play();
+        Pause();
     }
 
     private void Update()
     {
         transform.position = Vector2.Lerp(startPos, Vector2.zero, popupProgress / popupTime);
         popupProgress = Mathf.Clamp(popupProgress, 0, popupTime) + (popupVisible ? Time.deltaTime : -Time.deltaTime);
+
+        if (music.time >= music.clip.length)
+        {
+            GameManager.Instance.WinMinigame();
+        }
     }
 
     public void ToggleGamePopup()
     {
         popupVisible ^= true;
         Player.Instance.moveDisabled ^= true;
+
         if (popupVisible)
         {
-            UnPauseMethod();
+            Unpause();
         }
         else
         {
-            screen.SetActive(false);
+            Pause();
         }
     }
 
-    public void UnPauseMethod()
+    public void Unpause()
     {
-        StartCoroutine(UnPause());
+        paused = false;
+
+        StartCoroutine(UnpauseCoroutine());
     }
 
-    public IEnumerator UnPause()
+    public void Pause()
     {
-        // while (popupProgress >= popupTime / 2)
-        // {
-        //     yield return null;
-        // }
+        paused = true;
+
+        music.Pause();
+        screen.SetActive(false);
+    }
+
+    public IEnumerator UnpauseCoroutine()
+    {
         screen.SetActive(true);
         Note.paused = true;
+
         pauseText.text = "3";
         pauseText.gameObject.SetActive(true);
         while (int.Parse(pauseText.text) > 0)
@@ -66,7 +89,12 @@ public class GamePopup : MonoBehaviour
             yield return new WaitForSeconds(1);
             pauseText.text = (int.Parse(pauseText.text) - 1).ToString();
         }
-        pauseText.gameObject.SetActive(false);
-        Note.paused = false;
+
+        if (!paused)
+        {
+            music.UnPause();
+            pauseText.gameObject.SetActive(false);
+            Note.paused = false;
+        }
     }
 }

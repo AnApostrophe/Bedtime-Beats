@@ -461,7 +461,7 @@ PrefabInstance:
       objectReference: {fileID: 1672477557615154052, guid: c25202051b677894097ccb77630b9979, type: 3}
     - target: {fileID: 5135101421232602119, guid: 19e181e2cacdb874bb3d311884385f60, type: 3}
       propertyPath: key
-      value: 107
+      value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 5135101421232602119, guid: 19e181e2cacdb874bb3d311884385f60, type: 3}
       propertyPath: notes
@@ -2135,6 +2135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 776871262}
   - component: {fileID: 776871263}
+  - component: {fileID: 776871264}
   m_Layer: 0
   m_Name: Rhythm Game
   m_TagString: Untagged
@@ -2175,6 +2176,102 @@ MonoBehaviour:
   popupTime: 0.3
   popupVisible: 0
   popupProgress: 0
+--- !u!82 &776871264
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776871261}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 25569606f57717445977ad3552f545d2, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.85
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &829441825
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,7 +2590,7 @@ PrefabInstance:
       objectReference: {fileID: 1672477557615154052, guid: c25202051b677894097ccb77630b9979, type: 3}
     - target: {fileID: 1887498873979424221, guid: 629ade9e7f34bba49b792808e23aae25, type: 3}
       propertyPath: key
-      value: 106
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1887498873979424221, guid: 629ade9e7f34bba49b792808e23aae25, type: 3}
       propertyPath: notes
@@ -5008,7 +5105,7 @@ MonoBehaviour:
   door: {fileID: 1761119544}
   backLight: {fileID: 1263778670}
   underLight: {fileID: 1596930905}
-  walkingAudio: {fileID: 8300000, guid: 4ebcfbba42952474e8214ea9274203b5, type: 3}
+  walkingAudio: {fileID: 8300000, guid: 757990db12b53004b93f699ceeb05b39, type: 3}
   scareAudio: {fileID: 8300000, guid: 1c8195f54f0cab34ea3aaa270d9b98c6, type: 3}
 --- !u!82 &1361567466
 AudioSource:
@@ -6364,7 +6461,7 @@ PrefabInstance:
       objectReference: {fileID: 1672477557615154052, guid: c25202051b677894097ccb77630b9979, type: 3}
     - target: {fileID: 955127265207414417, guid: 69430ab799da2de42906a53e696a25f5, type: 3}
       propertyPath: key
-      value: 59
+      value: 107
       objectReference: {fileID: 0}
     - target: {fileID: 955127265207414417, guid: 69430ab799da2de42906a53e696a25f5, type: 3}
       propertyPath: notes
@@ -7618,7 +7715,7 @@ PrefabInstance:
       objectReference: {fileID: 1672477557615154052, guid: c25202051b677894097ccb77630b9979, type: 3}
     - target: {fileID: 1780196917240780964, guid: 27b16f7a5faf0a44b90c5203023ae36f, type: 3}
       propertyPath: key
-      value: 108
+      value: 106
       objectReference: {fileID: 0}
     - target: {fileID: 1780196917240780964, guid: 27b16f7a5faf0a44b90c5203023ae36f, type: 3}
       propertyPath: notes
