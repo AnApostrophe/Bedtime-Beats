@@ -80,10 +80,13 @@ public class GameManager : MonoBehaviour
 
     public void ResetMinigame()
     {
-        health = numOfHearts;
-        if (oldNotes != null) Destroy(oldNotes);
-        oldNotes = Instantiate(notesPrefab, transform.parent);
-        oldNotes.SetActive(true);
+        if (!createMode)
+        {
+            health = numOfHearts;
+            if (oldNotes != null) Destroy(oldNotes);
+            oldNotes = Instantiate(notesPrefab, transform.parent);
+            oldNotes.SetActive(true);
+        }
     }
 
     public void DecreaseHealth()
