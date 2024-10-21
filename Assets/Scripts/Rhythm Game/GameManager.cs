@@ -8,15 +8,15 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public bool createMode;
+    public float beatTempoPM, beatTempoPS;
     public int health;
     public int numOfHearts;
 
-    public Image[] hearts;
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
+    public List<GameObject> hearts;
+    public List<RhythmButtonPress> buttons;
 
     public GameObject notesPrefab;
-    private GameObject oldNotes;
+    public GameObject oldNotes;
 
     void Awake()
     {
@@ -25,35 +25,16 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        beatTempoPS = beatTempoPM / 60;
+        numOfHearts = hearts.Count;
         ResetMinigame();
     }
 
     void Update()
     {
-        if (health > numOfHearts)
+        if (!Note.paused)
         {
-            health = numOfHearts;
-        }
-
-        for (int i = 0; i < hearts.Length; i++)
-        {
-            if (i < health)
-            {
-                hearts[i].sprite = fullHeart;
-            }
-            else
-            {
-                hearts[i].sprite = emptyHeart;
-            }
-
-            if (i < numOfHearts)
-            {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false;
-            }
+            oldNotes.transform.position -= new Vector3(0f, beatTempoPS * Time.deltaTime, 0f);
         }
     }
 
@@ -81,15 +62,33 @@ public class GameManager : MonoBehaviour
     public void ResetMinigame()
     {
         health = numOfHearts;
+        foreach (GameObject heart in hearts)
+        {
+            heart.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        foreach (RhythmButtonPress button in buttons)
+        {
+            button.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = button.defaultImage;
+        }
         if (oldNotes != null) Destroy(oldNotes);
-        oldNotes = Instantiate(notesPrefab, transform.parent);
-        oldNotes.SetActive(true);
+        if (createMode)
+        {
+            oldNotes = notesPrefab;
+            oldNotes.SetActive(true);
+        }
+        else
+        {
+            oldNotes = Instantiate(notesPrefab, transform.parent);
+            oldNotes.name = "CURRENT NOTES";
+            oldNotes.SetActive(true);
+        }
         GamePopup.Instance.music.time = 0;
         GamePopup.Instance.music.Pause();
     }
 
     public void DecreaseHealth()
     {
+        hearts[health - 1].GetComponent<SpriteRenderer>().enabled = false;
         health--;
         if (health < 1)
         {

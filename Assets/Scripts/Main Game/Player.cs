@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
     public void LoseGame()
     {
         StartCoroutine(GameOverPullUp());
-        
+
     }
 
     void PlayAnimations()
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
         ParentCanvas.SetActive(true);
         GameOverScreen.SetActive(true);
         Debug.Log("panel should be active" + GameOverScreen.activeSelf + "," + GameOverScreen.activeInHierarchy);
-        Debug.Log(GameOverScreen.transform.parent.gameObject.activeSelf +"," + GameOverScreen.transform.parent.gameObject);
+        Debug.Log(GameOverScreen.transform.parent.gameObject.activeSelf + "," + GameOverScreen.transform.parent.gameObject);
         yield return new WaitForSeconds(2.5f);
         Debug.Log("waited part 2");
         SceneManager.LoadScene(0);

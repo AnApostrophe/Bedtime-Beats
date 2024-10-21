@@ -42,10 +42,10 @@ public class GamePopup : MonoBehaviour
         transform.position = Vector2.Lerp(startPos, Vector2.zero, popupProgress / popupTime);
         popupProgress = Mathf.Clamp(popupProgress, 0, popupTime) + (popupVisible ? Time.deltaTime : -Time.deltaTime);
 
-        if (CutsceneManager.Instance.isTutorial && music.time >= TUTORIAL_LENGTH)
-        {
-            CutsceneManager.Instance.EndTutorial();
-        }
+        // if (CutsceneManager.Instance.isTutorial && music.time >= TUTORIAL_LENGTH)
+        // {
+        //     CutsceneManager.Instance.EndTutorial();
+        // }
 
         if (music.time >= music.clip.length)
         {
@@ -78,6 +78,10 @@ public class GamePopup : MonoBehaviour
     public void Pause()
     {
         paused = true;
+        foreach (RhythmButtonPress button in GameManager.Instance.buttons)
+        {
+            button.ResetFrog();
+        }
 
         music.Pause();
         screen.SetActive(false);

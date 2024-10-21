@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class RhythmButtonPress : MonoBehaviour
 {
     public static bool createMode;
-    public GameObject notes;
     public KeyCode key;
     bool active = false;
     GameObject lastNote;
+    SpriteRenderer frog;
+    public List<Sprite> noteSprites;
     public Sprite pressedImage;
     public Sprite defaultImage;
-    private SpriteRenderer theSR;
     public GameObject n;
 
     public GameManager manager;
@@ -19,7 +20,7 @@ public class RhythmButtonPress : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        theSR = GetComponent<SpriteRenderer>();
+        frog = transform.GetChild(0).GetComponent<SpriteRenderer>();
         createMode = manager.createMode;
     }
 
@@ -32,17 +33,16 @@ public class RhythmButtonPress : MonoBehaviour
             {
                 if (Input.GetKeyDown(key))
                 {
-                    theSR.sprite = pressedImage;
-                    Instantiate(n, transform.position, Quaternion.identity, notes.transform);
+                    frog.sprite = pressedImage;
+                    GameObject noteFly = Instantiate(n, GetComponent<BoxCollider2D>().bounds.center, Quaternion.identity, GameManager.Instance.oldNotes.transform);
+                    noteFly.GetComponent<Note>().sprites = noteSprites;
                 }
             }
-
-
             else
             {
                 if (Input.GetKeyDown(key))
                 {
-                    theSR.sprite = pressedImage;
+                    frog.sprite = pressedImage;
                     if (active)
                     {
                         Destroy(lastNote);
@@ -55,11 +55,16 @@ public class RhythmButtonPress : MonoBehaviour
 
                 if (Input.GetKeyUp(key))
                 {
-                    theSR.sprite = defaultImage;
+                    ResetFrog();
                 }
 
             }
         }
+    }
+
+    public void ResetFrog()
+    {
+        frog.sprite = defaultImage;
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -74,10 +79,5 @@ public class RhythmButtonPress : MonoBehaviour
     void OnTriggerExit2D(Collider2D col)
     {
         active = false;
-    }
-
-    bool getCreateMode()
-    {
-        return createMode;
     }
 }

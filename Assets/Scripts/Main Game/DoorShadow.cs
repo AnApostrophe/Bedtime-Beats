@@ -28,7 +28,7 @@ public class DoorShadow : MonoBehaviour
         walkingProgress = 0;
         walkingPaused = true;
 
-        StartCoroutine(ShadowBehavior());
+        if (!GameManager.Instance.createMode) StartCoroutine(ShadowBehavior());
     }
 
     void Update()
@@ -40,19 +40,34 @@ public class DoorShadow : MonoBehaviour
 
         // transform.GetChild(0).rotation = Quaternion.Euler(Vector3.forward * Mathf.Rad2Deg * Mathf.Atan2(transform.localPosition.x, 1f));
         transform.localPosition = Vector2.Lerp(oldPos, targetPos, walkingProgress / walkingDuration);
-        source.panStereo = Mathf.Lerp(-1, 1, (transform.position.x + Mathf.Abs(targetPos.x)) / 2 * Mathf.Abs(targetPos.x));
+        source.panStereo = Mathf.Lerp(-1, 1, (transform.localPosition.x + Mathf.Abs(targetPos.x)) / (2 * Mathf.Abs(targetPos.x)));
     }
 
     void SwapShadowSprite(int index)
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = parentShadows[index];
+            string state;
+            switch (index)
+            {
+                case 1:
+                    state = "ParentChecking";
+                    break;
+                case 2:
+                    state = "ParentWalking";
+                    break;
+                default:
+                    state = "ParentStanding";
+                    break;
+            }
+            transform.GetChild(i).GetComponent<Animator>().Play(state);
+            // transform.GetChild(i).GetComponent<SpriteRenderer>().sprite = parentShadows[index];
         }
     }
 
     IEnumerator ShadowBehavior()
     {
+        SwapShadowSprite(2);
         yield return new WaitForSeconds(period);
         walkingPaused = false;
 
@@ -118,7 +133,7 @@ public class DoorShadow : MonoBehaviour
         doorOpen.GetComponent<SpriteRenderer>().enabled = true;
         doorOpen.transform.GetChild(0).gameObject.SetActive(true);
         SwapShadowSprite(1);
-        transform.GetChild(1).gameObject.SetActive(true);
+        transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
 
         if (!Player.Instance.sleeping)
         {
@@ -132,7 +147,7 @@ public class DoorShadow : MonoBehaviour
         doorOpen.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(checkDuration);
         SwapShadowSprite(0);
-        transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
         doorClosed.GetComponent<SpriteRenderer>().enabled = true;
         doorOpen.GetComponent<SpriteRenderer>().enabled = false;
         doorOpen.transform.GetChild(0).gameObject.SetActive(false);

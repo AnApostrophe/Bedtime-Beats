@@ -6,37 +6,29 @@ public class Note : MonoBehaviour
 {
     public static bool paused;
 
-    Rigidbody2D rb;
-    public float beatTempoPM;
-    float beatTempoPS;
-    //bool started;
+    public List<Sprite> sprites;
+    SpriteRenderer sr;
+    float flapSpeed;
 
-    void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-    // Start is called before the first frame update
     void Start()
     {
         //started = false;
-        beatTempoPS = beatTempoPM / 60;
+        sr = GetComponent<SpriteRenderer>();
+        flapSpeed = Random.Range(0.2f, 0.5f);
+        sr.sprite = sprites[Random.Range(0, 2)];
+        StartCoroutine(flyAnimation());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator flyAnimation()
     {
-        //comment out if need to create map?
-        /*if(!started)
+        while (true)
         {
-            if( Input.anyKeyDown )
+            while (paused)
             {
-                started = true;
+                yield return null;
             }
-        }
-        else*/
-        if (!paused)
-        {
-            transform.position -= new Vector3(0f, beatTempoPS * Time.deltaTime, 0f);
+            yield return new WaitForSeconds(flapSpeed);
+            sr.sprite = sr.sprite.Equals(sprites[0]) ? sprites[1] : sprites[0];
         }
     }
 }
