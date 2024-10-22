@@ -40,17 +40,22 @@ public class GameManager : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (!createMode)
+        if (!createMode && !col.GetComponent<Note>().isEndHold)
         {
-            Destroy(col.gameObject);
+            // Temp disable due to bug, will lag game out
+            // col.gameObject.transform.position = Vector2.right * 15;
+            // Destroy(col.gameObject);
             DecreaseHealth();
         }
     }
 
     public void WinMinigame()
     {
-        // TODO
-        Debug.Log("You Win");
+        if (!createMode)
+        {
+            // TODO
+            Debug.Log("You Win");
+        }
     }
 
     public void LoseMinigame()

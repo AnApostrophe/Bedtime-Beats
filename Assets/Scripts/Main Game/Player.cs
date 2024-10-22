@@ -53,7 +53,6 @@ public class Player : MonoBehaviour
     public void LoseGame()
     {
         StartCoroutine(GameOverPullUp());
-
     }
 
     void PlayAnimations()

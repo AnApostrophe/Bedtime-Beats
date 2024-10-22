@@ -85,6 +85,7 @@ public class GamePopup : MonoBehaviour
 
         music.Pause();
         screen.SetActive(false);
+        StopAllCoroutines();
     }
 
     public IEnumerator UnpauseCoroutine()
@@ -100,11 +101,15 @@ public class GamePopup : MonoBehaviour
             pauseText.text = (int.Parse(pauseText.text) - 1).ToString();
         }
 
-        if (!paused)
+        music.UnPause();
+        pauseText.gameObject.SetActive(false);
+        Note.paused = false;
+        if (GameManager.Instance.oldNotes != null)
         {
-            music.UnPause();
-            pauseText.gameObject.SetActive(false);
-            Note.paused = false;
+            foreach (Note note in GameManager.Instance.oldNotes.GetComponentsInChildren<Note>())
+            {
+                note.flapping = false;
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ public class Bedsheets : MonoBehaviour
 
     void Update()
     {
-        GetComponent<SpriteRenderer>().sortingOrder = Player.Instance.sleeping ? 5 : 2;
+        GetComponent<SpriteRenderer>().sortingOrder = Player.Instance.sleeping ? 6 : 2;
     }
 
     void OnTriggerEnter2D()

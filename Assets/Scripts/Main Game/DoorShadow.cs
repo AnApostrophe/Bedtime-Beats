@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class DoorShadow : MonoBehaviour
 {
+    public static DoorShadow Instance;
+
     public float period = 3f, periodOffset = 1f;
     public float waitDuration = 1f, waitOffset = 0.5f;
     public float walkingDuration = 5f, walkingProgress = 0f;
@@ -19,6 +21,11 @@ public class DoorShadow : MonoBehaviour
     private bool flipped;
     private Vector2 oldPos, targetPos;
     private AudioSource source;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -141,17 +148,23 @@ public class DoorShadow : MonoBehaviour
             source.Play();
             doorLight.GetComponent<SpriteRenderer>().sprite = doorShadows[1];
             yield return new WaitForSeconds(checkDuration);
+            GamePopup.Instance.popupVisible = false;
+            Player.Instance.moveDisabled = true;
+            GamePopup.Instance.Pause();
             Player.Instance.LoseGame();
+            yield return new WaitForSeconds(10f);
         }
-
-        doorOpen.GetComponent<AudioSource>().Play();
-        yield return new WaitForSeconds(checkDuration);
-        SwapShadowSprite(0);
-        transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
-        doorClosed.GetComponent<SpriteRenderer>().enabled = true;
-        doorOpen.GetComponent<SpriteRenderer>().enabled = false;
-        doorOpen.transform.GetChild(0).gameObject.SetActive(false);
-        yield return new WaitForSeconds(checkDuration);
+        else
+        {
+            doorOpen.GetComponent<AudioSource>().Play();
+            yield return new WaitForSeconds(checkDuration);
+            SwapShadowSprite(0);
+            transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
+            doorClosed.GetComponent<SpriteRenderer>().enabled = true;
+            doorOpen.GetComponent<SpriteRenderer>().enabled = false;
+            doorOpen.transform.GetChild(0).gameObject.SetActive(false);
+            yield return new WaitForSeconds(checkDuration);
+        }
     }
 
     IEnumerator FadeInWalking()
