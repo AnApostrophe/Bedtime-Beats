@@ -39,7 +39,7 @@ public class GamePopup : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector2.Lerp(startPos, Vector2.zero, popupProgress / popupTime);
+        transform.position = Vector2.Lerp(startPos, new Vector2(startPos.x, 0), popupProgress / popupTime);
         popupProgress = Mathf.Clamp(popupProgress, 0, popupTime) + (popupVisible ? Time.deltaTime : -Time.deltaTime);
 
         // if (CutsceneManager.Instance.isTutorial && music.time >= TUTORIAL_LENGTH)

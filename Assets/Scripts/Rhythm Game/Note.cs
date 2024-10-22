@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Note : MonoBehaviour
@@ -44,9 +45,13 @@ public class Note : MonoBehaviour
             if (endHold != null)
             {
                 points.Add(endHold.transform.position);
+                GetComponent<LineRenderer>().SetPositions(points.ToArray());
+                sr.sprite = endHold.GetComponent<SpriteRenderer>().sprite;
             }
-            GetComponent<LineRenderer>().SetPositions(points.ToArray());
-            sr.sprite = endHold.GetComponent<SpriteRenderer>().sprite;
+            else
+            {
+                GetComponent<LineRenderer>().enabled = false;
+            }
         }
         else if (!paused && !flapping)
         {

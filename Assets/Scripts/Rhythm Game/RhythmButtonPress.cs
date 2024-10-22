@@ -47,6 +47,7 @@ public class RhythmButtonPress : MonoBehaviour
                         noteFly.GetComponent<Note>().isEndHold = true;
                         GameObject noteFlyEnd = Instantiate(noteFly, GetComponent<BoxCollider2D>().bounds.center, Quaternion.identity, GameManager.Instance.oldNotes.transform);
                         noteFlyEnd.GetComponent<Note>().isEndHold = false;
+                        noteFlyEnd.GetComponent<Note>().endHold = noteFly;
                         noteFly.GetComponent<Note>().endHold = noteFlyEnd;
                     }
                 }
@@ -64,6 +65,16 @@ public class RhythmButtonPress : MonoBehaviour
                     else if (currentPress.GetComponent<Note>().isEndHold)
                     {
                         currentPress.GetComponent<Note>().freezePosition = currentPress.transform.position;
+                    }
+                    else if (currentPress.GetComponent<Note>().endHold != null)
+                    {
+                        Debug.Log("bop");
+                        GameManager.Instance.DecreaseHealth();
+                        currentPress.GetComponent<Note>().endHold.transform.position = Vector2.right * 15;
+                        Destroy(currentPress.GetComponent<Note>().endHold);
+                        currentPress.transform.position = Vector2.right * 15;
+                        Destroy(currentPress);
+                        currentPress = null;
                     }
                     else
                     {
