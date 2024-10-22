@@ -144,13 +144,14 @@ public class DoorShadow : MonoBehaviour
 
         if (!Player.Instance.sleeping)
         {
+            Gameboy.Instance.instructions.SetActive(false);
+            GamePopup.Instance.popupVisible = false;
+            Player.Instance.moveDisabled = true;
+            GamePopup.Instance.Pause();
             source.clip = scareAudio;
             source.Play();
             doorLight.GetComponent<SpriteRenderer>().sprite = doorShadows[1];
             yield return new WaitForSeconds(checkDuration);
-            GamePopup.Instance.popupVisible = false;
-            Player.Instance.moveDisabled = true;
-            GamePopup.Instance.Pause();
             Player.Instance.LoseGame();
             yield return new WaitForSeconds(10f);
         }

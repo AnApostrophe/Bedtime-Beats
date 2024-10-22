@@ -5,8 +5,15 @@ using UnityEngine;
 
 public class Gameboy : MonoBehaviour
 {
-    [SerializeField] GameObject instructions;
+    public static Gameboy Instance;
+
+    public GameObject instructions;
     [SerializeField] List<Sprite> sprites;
+
+    void Start()
+    {
+        Instance = this;
+    }
 
     private void Update()
     {
