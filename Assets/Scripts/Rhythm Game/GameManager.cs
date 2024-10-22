@@ -53,8 +53,7 @@ public class GameManager : MonoBehaviour
     {
         if (!createMode)
         {
-            // TODO
-            Debug.Log("You Win");
+            Player.Instance.WinGame();
         }
     }
 

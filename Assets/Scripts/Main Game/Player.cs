@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -55,6 +53,11 @@ public class Player : MonoBehaviour
         StartCoroutine(GameOverPullUp());
     }
 
+    public void WinGame()
+    {
+        StartCoroutine(WinGamePullUp());
+    }
+
     void PlayAnimations()
     {
         if (rb.velocity.x < 0) animState = "WalkLeft";
@@ -79,17 +82,21 @@ public class Player : MonoBehaviour
 
     IEnumerator GameOverPullUp()
     {
-        Debug.Log("coroutine started");
         yield return new WaitForSeconds(0.15f);
-        Debug.Log("waited part 1");
         ParentCanvas.SetActive(true);
         GameOverScreen.SetActive(true);
-        Debug.Log("panel should be active" + GameOverScreen.activeSelf + "," + GameOverScreen.activeInHierarchy);
-        Debug.Log(GameOverScreen.transform.parent.gameObject.activeSelf + "," + GameOverScreen.transform.parent.gameObject);
+        GameOverScreen.transform.GetChild(0).gameObject.SetActive(true);
         yield return new WaitForSeconds(2.5f);
-        Debug.Log("waited part 2");
         SceneManager.LoadScene(0);
-        Debug.Log("scene loaded");
+    }
 
+    IEnumerator WinGamePullUp()
+    {
+        yield return new WaitForSeconds(0.15f);
+        ParentCanvas.SetActive(true);
+        GameOverScreen.SetActive(true);
+        GameOverScreen.transform.GetChild(1).gameObject.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
+        SceneManager.LoadScene(0);
     }
 }
