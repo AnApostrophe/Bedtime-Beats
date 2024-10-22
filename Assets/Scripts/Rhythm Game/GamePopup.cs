@@ -94,7 +94,7 @@ public class GamePopup : MonoBehaviour
         Note.paused = true;
 
         pauseText.text = "3";
-        pauseText.gameObject.SetActive(true);
+        pauseText.transform.parent.gameObject.SetActive(true);
         while (int.Parse(pauseText.text) > 0)
         {
             yield return new WaitForSeconds(1);
@@ -102,7 +102,7 @@ public class GamePopup : MonoBehaviour
         }
 
         music.UnPause();
-        pauseText.gameObject.SetActive(false);
+        pauseText.transform.parent.gameObject.SetActive(false);
         Note.paused = false;
         if (GameManager.Instance.oldNotes != null)
         {
