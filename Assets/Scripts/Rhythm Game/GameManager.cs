@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         beatTempoPS = beatTempoPM / 60;
-        numOfHearts = hearts.Count;
+
+        numOfHearts = hearts.Count * 2;
         ResetMinigame();
     }
 
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
         foreach (GameObject heart in hearts)
         {
             heart.GetComponent<SpriteRenderer>().enabled = true;
+            heart.GetComponent<SpriteRenderer>().color = Color.white;
         }
         foreach (RhythmButtonPress button in buttons)
         {
@@ -92,7 +94,14 @@ public class GameManager : MonoBehaviour
 
     public void DecreaseHealth()
     {
-        hearts[health - 1].GetComponent<SpriteRenderer>().enabled = false;
+        if (health % 2 == 0)
+        {
+            hearts[health / 2 - 1].GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+        }
+        else
+        {
+            hearts[(health + 1) / 2 - 1].GetComponent<SpriteRenderer>().enabled = false;
+        }
         health--;
         if (health < 1)
         {
